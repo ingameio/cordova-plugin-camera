@@ -70,7 +70,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
-                android:name="org.apache.cordova.camera.SquareCameraActivity"
+                android:name="io.ingame.squarecamera.SquareCameraActivity"
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             </activity>
