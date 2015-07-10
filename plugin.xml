@@ -68,6 +68,14 @@
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                android:name="org.apache.cordova.camera.SquareCameraActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            </activity>
+        </config-file>
+
         <source-file src="src/android/java/CameraFragment.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraFragmentListener.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraOrientationListener.java" target-dir="src/io/ingame/squarecamera" />

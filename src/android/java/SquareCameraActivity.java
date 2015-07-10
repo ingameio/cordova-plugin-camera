@@ -2,7 +2,6 @@ package io.ingame.squarecamera;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,8 +38,6 @@ public class SquareCameraActivity extends Activity implements CameraFragmentList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(getResources().getIdentifier("@layout/activity_camera", null, getPackageName()));
 
