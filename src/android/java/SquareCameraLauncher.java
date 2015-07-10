@@ -19,7 +19,6 @@ package io.ingame.squarecamera;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
-import org.apache.cordova.camera.ExifHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
