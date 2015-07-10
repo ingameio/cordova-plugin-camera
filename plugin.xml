@@ -61,16 +61,28 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Camera">
-                <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
+                <param name="android-package" value="io.ingame.squarecamera.SquareCameraLauncher"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
 
-        <source-file src="src/android/CameraLauncher.java" target-dir="src/org/apache/cordova/camera" />
-        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/camera" />
-        <source-file src="src/android/ExifHelper.java" target-dir="src/org/apache/cordova/camera" />
+        <source-file src="src/android/java/CameraFragment.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/CameraFragmentListener.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/CameraOrientationListener.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/CameraOverlayView.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/CameraPreview.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/SquareCameraActivity.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/SquareCameraLauncher.java" target-dir="src/io/ingame/squarecamera" />
+
+        <source-file src="src/android/res/layout/activity_camera.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_flash_auto.png" target-dir="res/mipmap-hdpi" />
+        <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_flash_off.png" target-dir="res/mipmap-hdpi" />
+        <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_flash_on.png" target-dir="res/mipmap-hdpi" />
+        <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_switch_camera.png" target-dir="res/mipmap-hdpi" />
+        <source-file src="src/android/res/mipmap-xhdpi/ic_camera.png" target-dir="res/mipmap-xhdpi" />
+
 
         <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
             <clobbers target="CameraPopoverHandle" />
