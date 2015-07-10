@@ -335,7 +335,8 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
 
     private void setFlashButtonState() {
         List<String> flashModes = mCamera.getParameters().getSupportedFlashModes();
-        ImageButton flashModeButton = (ImageButton) getActivity().findViewById(R.id.flash_mode_button);
+        ImageButton flashModeButton = (ImageButton) getActivity().findViewById(getResources()
+                        .getIdentifier("flash_mode_button", "id", getActivity().getPackageName()));
 
         if (null == flashModes || flashModes.size() == 0) {
             flashModeButton.setVisibility(View.INVISIBLE);

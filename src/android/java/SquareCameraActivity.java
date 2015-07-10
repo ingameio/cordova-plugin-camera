@@ -39,7 +39,7 @@ public class SquareCameraActivity extends Activity implements CameraFragmentList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(getResources().getIdentifier("@layout/activity_camera", null, getPackageName()));
 
         Display display = getWindowManager().getDefaultDisplay();
         // Necessary to use deprecated methods for Android 2.x support
@@ -50,7 +50,7 @@ public class SquareCameraActivity extends Activity implements CameraFragmentList
 
     @Override
     public void onCameraError() {
-        Toast.makeText(this, getString(getResources().getIdentifier("toat_error_camera_preview", "string", getPackageName())), Toast.LENGTH_SHORT)
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT)
                 .show();
         finish();
     }
@@ -104,7 +104,7 @@ public class SquareCameraActivity extends Activity implements CameraFragmentList
     }
 
     private void showSavingPictureErrorToast() {
-        Toast.makeText(this, getText(getResources().getIdentifier("toat_error_save_picture", "string", getPackageName())), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
 
 

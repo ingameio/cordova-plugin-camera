@@ -11,7 +11,7 @@
 		distributed under the License is distributed on an "AS IS" BASIS,
 		WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 		See the License for the specific language governing permissions and
-   		limitations under the License.   			
+   		limitations under the License.
  */
 
 package io.ingame.squarecamera;
@@ -46,9 +46,9 @@ import java.util.Calendar;
  * is closed, the screen displayed before the camera view was shown is
  * redisplayed.
  */
-public class NativeCameraLauncher extends CordovaPlugin {
+public class SquareCameraLauncher extends CordovaPlugin {
 
-    private static final String LOG_TAG = "NativeCameraLauncher";
+    private static final String LOG_TAG = "SquareCameraLauncher";
 
     private int mQuality;
 
@@ -68,7 +68,7 @@ public class NativeCameraLauncher extends CordovaPlugin {
 
     private boolean isSquared = false;
 
-    public NativeCameraLauncher() {
+    public SquareCameraLauncher() {
     }
 
     void failPicture(String reason) {
@@ -108,7 +108,7 @@ public class NativeCameraLauncher extends CordovaPlugin {
     public void takePicture() {
         // Save the number of images currently on disk for later
         Intent intent = new Intent(this.cordova.getActivity().getApplicationContext(), SquareCameraActivity.class);
-        
+
         mPhotoFile = createCaptureFile();
         mImageUri = Uri.fromFile(mPhotoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
