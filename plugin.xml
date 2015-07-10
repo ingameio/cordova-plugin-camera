@@ -50,12 +50,12 @@
             <feature name="Camera">
                 <param name="firefoxos-package" value="Camera" />
             </feature>
-        </config-file>                                         
-        
+        </config-file>
+
         <js-module src="src/firefoxos/CameraProxy.js" name="CameraProxy">
           <runs />
         </js-module>
-    </platform>  
+    </platform>
 
     <!-- android -->
     <platform name="android">
@@ -75,6 +75,7 @@
         <source-file src="src/android/java/CameraPreview.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/SquareCameraActivity.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/SquareCameraLauncher.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/ExifHelper.java" target-dir="src/io/ingame/squarecamera" />
 
         <source-file src="src/android/res/layout/activity_camera.xml" target-dir="res/layout" />
         <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_flash_auto.png" target-dir="res/mipmap-hdpi" />
@@ -110,7 +111,7 @@
         </js-module>
 
      </platform>
-     
+
      <!-- ubuntu -->
      <platform name="ubuntu">
          <config-file target="config.xml" parent="/*">
@@ -159,11 +160,11 @@
          <framework src="MobileCoreServices.framework" />
          <framework src="CoreGraphics.framework" />
          <framework src="AVFoundation.framework" />
-         
+
          <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
              <string></string>
          </config-file>
-                  
+
      </platform>
 
     <!-- blackberry10 -->
