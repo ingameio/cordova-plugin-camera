@@ -65,8 +65,6 @@ public class SquareCameraLauncher extends CordovaPlugin {
 
     private String mDate = null;
 
-    private boolean isSquared = false;
-
     public SquareCameraLauncher() {
     }
 
@@ -87,7 +85,6 @@ public class SquareCameraLauncher extends CordovaPlugin {
                 mTargetHeight = args.getInt(4);
                 mTargetWidth = args.getInt(3);
                 mQuality = args.getInt(0);
-                isSquared = args.getBoolean(12);
                 takePicture();
                 PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
                 r.setKeepCallback(true);
