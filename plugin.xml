@@ -61,7 +61,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Camera">
-                <param name="android-package" value="io.ingame.squarecamera.SquareCameraLauncher"/>
+                <param name="android-package" value="io.ingame.squarecamera.CameraLauncher"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
@@ -78,14 +78,15 @@
             </activity>
         </config-file>
 
+        <source-file src="src/android/java/CameraLauncher.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraFragment.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraFragmentListener.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraOrientationListener.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraOverlayView.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/CameraPreview.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/SquareCameraActivity.java" target-dir="src/io/ingame/squarecamera" />
-        <source-file src="src/android/java/SquareCameraLauncher.java" target-dir="src/io/ingame/squarecamera" />
         <source-file src="src/android/java/ExifHelper.java" target-dir="src/io/ingame/squarecamera" />
+        <source-file src="src/android/java/FileHelper.java" target-dir="src/io/ingame/squarecamera" />
 
         <source-file src="src/android/res/layout/activity_camera.xml" target-dir="res/layout" />
         <source-file src="src/android/res/mipmap-hdpi/action_bar_glyph_flash_auto.png" target-dir="res/mipmap-hdpi" />
