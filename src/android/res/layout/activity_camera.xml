@@ -15,55 +15,57 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp">
-
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:gravity="right">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp">
 
-            <ImageButton
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:onClick="swapFlash"
-                android:background="@null"
-                android:id="@+id/flash_mode_button"/>
-        </RelativeLayout>
+                android:layout_weight=".25"
+                android:gravity="right">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5">
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:onClick="swapFlash"
+                    android:background="@null"
+                    android:id="@+id/flash_mode_button"/>
+            </RelativeLayout>
 
-            <ImageButton
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
-                android:onClick="takePicture"
-                android:background="@null"
-                android:src="@mipmap/ic_camera" />
-        </RelativeLayout>
+                android:layout_weight=".50">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".25">
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="takePicture"
+                    android:background="@null"
+                    android:src="@mipmap/ic_camera" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/camera_mode_button"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:onClick="swapCamera"
-                android:background="@null"
-                android:src="@mipmap/action_bar_glyph_switch_camera" />
-        </RelativeLayout>
-    </LinearLayout>
+                android:layout_weight=".25">
+
+                <ImageButton
+                    android:id="@+id/camera_mode_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:onClick="swapCamera"
+                    android:background="@null"
+                    android:src="@mipmap/action_bar_glyph_switch_camera" />
+            </RelativeLayout>
+        </LinearLayout>
+
 </RelativeLayout>
