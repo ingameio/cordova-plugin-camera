@@ -26,7 +26,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3"
+            android:layout_weight=".25"
             android:gravity="right">
 
             <ImageButton
@@ -40,7 +40,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4">
+            android:layout_weight=".5">
 
             <ImageButton
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3">
+            android:layout_weight=".25">
 
             <ImageButton
                 android:layout_height="wrap_content"
