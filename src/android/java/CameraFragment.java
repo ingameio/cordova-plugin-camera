@@ -169,6 +169,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
         mCamera.setParameters(parameters);
 
         setFlashButtonState();
+        setSwapCameraButtonState();
     }
 
     private Size determineBestPreviewSize(Camera.Parameters parameters) {
@@ -331,6 +332,18 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
     private void stopCamera() {
         stopCameraPreview();
         mCamera.release();
+    }
+
+
+    private void setSwapCameraButtonState() {
+      ImageButton cameraModeButton = (ImageButton) getActivity().findViewById(getResources()
+                      .getIdentifier("camera_mode_button", "id", getActivity().getPackageName()));
+
+      if (Camera.getNumberOfCameras() > 1) {
+          cameraModeButton.setVisibility(View.VISIBLE);
+      } else {
+          cameraModeButton.setVisibility(View.INVISIBLE);
+      }
     }
 
     private void setFlashButtonState() {

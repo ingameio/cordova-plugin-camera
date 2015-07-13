@@ -58,6 +58,7 @@
             android:layout_weight=".25">
 
             <ImageButton
+                android:id="@+id/camera_mode_button"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:onClick="swapCamera"
