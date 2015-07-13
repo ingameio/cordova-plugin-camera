@@ -32,7 +32,6 @@
             <ImageButton
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:contentDescription="@string/content_description_swap_flash"
                 android:onClick="swapFlash"
                 android:background="@null"
                 android:id="@+id/flash_mode_button"/>
@@ -48,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
-                android:contentDescription="@string/content_description_take_picture"
                 android:onClick="takePicture"
                 android:background="@null"
                 android:src="@mipmap/ic_camera" />
@@ -62,7 +60,6 @@
             <ImageButton
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:contentDescription="@string/content_description_swap_camera"
                 android:onClick="swapCamera"
                 android:background="@null"
                 android:src="@mipmap/action_bar_glyph_switch_camera" />
