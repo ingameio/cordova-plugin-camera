@@ -15,35 +15,57 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp">
-
-        <ImageButton
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:onClick="swapFlash"
-            android:background="@null"
-            android:id="@+id/flash_mode_button"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp">
 
-        <ImageButton
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
-            android:onClick="takePicture"
-            android:background="@null"
-            android:src="@mipmap/ic_camera" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:gravity="right">
 
-        <ImageButton
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:onClick="swapCamera"
-            android:background="@null"
-            android:src="@mipmap/action_bar_glyph_switch_camera" />
-    </LinearLayout>
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:onClick="swapFlash"
+                    android:background="@null"
+                    android:id="@+id/flash_mode_button"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50">
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="takePicture"
+                    android:background="@null"
+                    android:src="@mipmap/ic_camera" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25">
+
+                <ImageButton
+                    android:id="@+id/camera_mode_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:onClick="swapCamera"
+                    android:background="@null"
+                    android:src="@mipmap/action_bar_glyph_switch_camera" />
+            </RelativeLayout>
+        </LinearLayout>
+
 </RelativeLayout>
