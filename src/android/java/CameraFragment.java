@@ -256,13 +256,31 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
 
         int rotation = (mDisplayOrientation + mOrientationListener.getRememberedOrientation() + mLayoutOrientation) % 360;
 
-        if (rotation != 0) {
+        if (mCameraId == CameraInfo.CAMERA_FACING_BACK && rotation != 0) {
             Bitmap oldBitmap = bitmap;
 
             Matrix matrix = new Matrix();
             matrix.postRotate(rotation);
 
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+            oldBitmap.recycle();
+        }
+
+        if (mCameraId != CameraInfo.CAMERA_FACING_BACK) {
+            Bitmap oldBitmap = bitmap;
+
+            float[] mirrorY = { -1, 0, 0, 0, 1, 0, 0, 0, 1};
+            Matrix matrix = new Matrix();
+            Matrix matrixMirrorY = new Matrix();
+            matrixMirrorY.setValues(mirrorY);
+
+            matrix.postConcat(matrixMirrorY);
+
+            if (rotation != 0) {
+                matrix.postRotate(rotation);
+            }
+
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
             oldBitmap.recycle();
         }
 
