@@ -42,6 +42,7 @@ import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -75,7 +76,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
     private static final String GET_PICTURE = "Get Picture";
     private static final String GET_VIDEO = "Get Video";
     private static final String GET_All = "Get All";
-    
+
     private static final String LOG_TAG = "CameraLauncher";
     private static final int CROP_CAMERA = 100;
 
@@ -153,11 +154,11 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 callbackContext.sendPluginResult(r);
                 return true;
             }
-             
+
             PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
             r.setKeepCallback(true);
             callbackContext.sendPluginResult(r);
-            
+
             return true;
         }
         return false;
@@ -185,6 +186,24 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         return cache.getAbsolutePath();
     }
 
+    private void setOutputUri(Intent intent, Uri uri) {
+      intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, uri);
+
+      JSONObject response;
+      try {
+          response = new JSONObject();
+          response.put("uri", uri.toString());
+          response.put("pending", true);
+      } catch (JSONException e) {
+          Log.e(LOG_TAG, "On pending result creation" + e);
+          return;
+      }
+
+      PluginResult r = new PluginResult(PluginResult.Status.OK, response);
+      r.setKeepCallback(true);
+      callbackContext.sendPluginResult(r);
+    }
+
     /**
      * Take a picture with the camera.
      * When an image is captured or the camera view is cancelled, the result is returned
@@ -209,8 +228,9 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
 
         // Specify file so that large image is captured and returned
         File photo = createCaptureFile(encodingType);
-        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
         this.imageUri = Uri.fromFile(photo);
+
+        setOutputUri(intent, this.imageUri);
 
         if (this.cordova != null) {
             this.cordova.startActivityForResult((CordovaPlugin) this, intent, (CAMERA + 1) * 16 + returnType + 1);
@@ -242,7 +262,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
      *
      * @param srcType           The album to get image from.
      * @param returnType        Set the type of image to return.
-     * @param encodingType 
+     * @param encodingType
      */
     // TODO: Images selected from SDCARD don't display correctly, but from CAMERA ALBUM do!
     // TODO: Images from kitkat filechooser not going into crop function
@@ -267,7 +287,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 }
                 File photo = createCaptureFile(encodingType);
                 croppedUri = Uri.fromFile(photo);
-                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, croppedUri);
+                setOutputUri(intent, croppedUri);
             } else {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -293,7 +313,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
 
   /**
    * Brings up the UI to perform crop on passed image URI
-   * 
+   *
    * @param picUri
    */
   private void performCrop(Uri picUri) {
@@ -366,7 +386,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 // Try to get the bitmap from intent.
                 bitmap = (Bitmap)intent.getExtras().get("data");
             }
-            
+
             // Double-check the bitmap.
             if (bitmap == null) {
                 Log.d(LOG_TAG, "I either have a null image path or bitmap");
@@ -402,7 +422,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
             }
 
             // If all this is true we shouldn't compress the image.
-            if (this.targetHeight == -1 && this.targetWidth == -1 && this.mQuality == 100 && 
+            if (this.targetHeight == -1 && this.targetWidth == -1 && this.mQuality == 100 &&
                     !this.correctOrientation) {
                 writeUncompressedImage(uri);
 
@@ -569,7 +589,7 @@ private String ouputModifiedBitmap(Bitmap bitmap, Uri uri) throws IOException {
             }
         }
     }
-    
+
     /**
      * Called when the camera view exits.
      *
@@ -590,7 +610,7 @@ private String ouputModifiedBitmap(Bitmap bitmap, Uri uri) throws IOException {
         this.callbackContext
             .success(croppedUri.toString());
         croppedUri = null;
-        
+
       }// If cancelled
       else if (resultCode == Activity.RESULT_CANCELED) {
         this.failPicture("Camera cancelled.");
@@ -738,7 +758,7 @@ private String ouputModifiedBitmap(Bitmap bitmap, Uri uri) throws IOException {
      *
      * @param imageUrl
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     private Bitmap getScaledBitmap(String imageUrl) throws IOException {
         // If no new width or height were specified return the original bitmap
@@ -750,13 +770,13 @@ private String ouputModifiedBitmap(Bitmap bitmap, Uri uri) throws IOException {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(FileHelper.getInputStreamFromUriString(imageUrl, cordova), null, options);
-        
+
         //CB-2292: WTF? Why is the width null?
         if(options.outWidth == 0 || options.outHeight == 0)
         {
             return null;
         }
-        
+
         // determine the correct aspect ratio
         int[] widthHeight = calculateAspectRatio(options.outWidth, options.outHeight);
 

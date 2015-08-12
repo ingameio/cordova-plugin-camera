@@ -42,7 +42,7 @@ for (var key in Camera) {
  * @param {Function} errorCallback
  * @param {Object} options
  */
-cameraExport.getPicture = function(successCallback, errorCallback, options) {
+cameraExport.getPicture = function(successCallback, errorCallback, options, progressCallback) {
     argscheck.checkArgs('fFO', 'Camera.getPicture', arguments);
     options = options || {};
     var getValue = argscheck.getValue;
@@ -63,9 +63,16 @@ cameraExport.getPicture = function(successCallback, errorCallback, options) {
     var args = [quality, destinationType, sourceType, targetWidth, targetHeight, encodingType,
                 mediaType, allowEdit, correctOrientation, saveToPhotoAlbum, popoverOptions, cameraDirection];
 
-    exec(successCallback, errorCallback, "Camera", "takePicture", args);
+    exec(successHandler.bind(successCallback), errorCallback, "Camera", "takePicture", args);
     // XXX: commented out
     //return new CameraPopoverHandle();
+    function successHandler(result) {
+        if (result && result.pending) {
+            progressCallback(result.uri);
+        } else {
+            successCallback(result);
+        }
+    }
 };
 
 cameraExport.cleanup = function(successCallback, errorCallback) {
