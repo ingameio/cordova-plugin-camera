@@ -63,7 +63,7 @@ cameraExport.getPicture = function(successCallback, errorCallback, options, prog
     var args = [quality, destinationType, sourceType, targetWidth, targetHeight, encodingType,
                 mediaType, allowEdit, correctOrientation, saveToPhotoAlbum, popoverOptions, cameraDirection];
 
-    exec(successHandler.bind(successCallback), errorCallback, "Camera", "takePicture", args);
+    exec(successHandler, errorCallback, "Camera", "takePicture", args);
     // XXX: commented out
     //return new CameraPopoverHandle();
     function successHandler(result) {
